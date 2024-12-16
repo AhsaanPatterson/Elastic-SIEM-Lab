@@ -6,37 +6,91 @@ In this guide, I'll outline the process for establishing a home lab for Elastic 
 
 <h2>Languages and Utilities Used</h2>
 
-- <b>Microsoft Visual Studio</b> 
-- <b>C#</b>
+- <b>Virtual Box</b> 
+- <b>Kali Linux</b>
 
 <p align="center">
-Create a Keylogger in C#
+Elastic SIEM LAB with Kali Linux Virtual Box
 
 <p align="center"> 
-Step 1: Install Visual Studio (Community edition is free).
+Task 1: Set up an Elastic Account
 </br>
-https://visualstudio.microsoft.com/
+1: Sign up for a free trial to use Elastic Cloud at
 </br>
-Create a new Console Application project in C#.
+</br>
+https://cloud.elastic.co/registration
 <br />
+</br>
+2. Once you have an Elastic account, log in to the Elastic Cloud console at
 <br />
+</br>
+https://cloud.elastic.co.
+</br>
+</br>
+3. Click on “Start your free trial.”
+</br>
+</br>
+4. Click on the “Create Deployment” button and select “Elasticsearch” as the deployment type.
+</br>
+</br>
+5. Choose a region and deployment size that fits your needs and click on “Create Deployment.”
+</br>
+</br>
+6. Wait for the configuration to complete.
+</br>
+</br>
+7. Once the deployment is ready, click “continue.”
+</br>
+</br>
 <p align="center"> 
-Step 2: Add Necessary Namespaces
+Task 2: Setting up the Linux VM
 </br>
-At the top of your Program.cs, include the following namespaces to access necessary classes and functions:
+</br>
+1. Download the Kali Linux VM from the official Kali website at
  <br/>
-<img src="https://imgur.com/XiPycxv.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
+ https://www.kali.org/get-kali/#kali-virtual-machines
+ </br>
+ </br>
+ 2. Create a new VM with the Kali VM file in your preferred virtualization platform, such as VirtualBox or VMware.
+ </br>
+ </br>
+ 3. Start the VM and follow the on-screen prompts to install Kali.
+ </br>
+ </br>
+ 4. Once the installation is complete, log in to the Kali VM using the credentials “kali” for both the username and password.
+ </br>
+ </br>
 
 <p align="center"> 
-Step 3: Define the Program Namespace and Class
+Task 3: Setting up the Agent to Collect Logs
 </br>
-Define your namespace and class in the project
+</br>
+1. Log in to your Elastic SIEM instance and navigate to the Integrations page by: clicking on the Kibana main menu bar at the top left, then selecting “Integrations” at the bottom.
 <br/>
-<img src="https://imgur.com/zsoyQ8q.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</br>
+<img src="https://imgur.com/5VorLIh.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
+2. Search for “Elastic Defend” and click on it to open the integration page.
+</br>
+</br>
+<img src="https://imgur.com/UGAmjKe.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</br>
+</br>
+3. Click on “Install Elastic Defend” and follow the instructions provided on the integration page to install the agent on your Kali VM.
+</br>
+</br>
+<img src="https://imgur.com/FjP4QAa.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</br>
+</br>
+4. Paste that command into the Kali terminal (command line).
+<img src="https://imgur.com/nXOx0qW.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</br>
+</br>
+5. Once the agent is installed, which can take a few minutes, you’ll see a message that says “Elastic Agent has been successfully installed.” It will automatically start collecting and forwarding logs to your Elastic SIEM instance, although it might take a few minutes for the logs to appear in the SIEM.
+</br>
+</br>
+<img src="https://imgur.com/F4M3W2p.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <p align="center"> 
 Step 4: Define Constants and Hook Variables
 </br>
