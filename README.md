@@ -61,6 +61,9 @@ Task 2: Setting up the Linux VM
  <img src="https://imgur.com/8JTfmyQ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
  </br>
  </br>
+ <b>Note:</b> If you experience any challenges with this task, you can search YouTube for phrases such as “How to create a virtual machine using VirtualBox/VMware with a Kali VM file” for helpful video tutorials.”
+ </br>
+ </br>
  3. Start the VM and follow the on-screen prompts to install Kali.
  </br>
  </br>
