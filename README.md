@@ -55,13 +55,16 @@ Task 2: Setting up the Linux VM
  https://www.kali.org/get-kali/#kali-virtual-machines
  </br>
  </br>
- 2. Create a new VM with the Kali VM file in your preferred virtualization platform, such as VirtualBox or VMware.
+ 2. Set up a new virtual machine using the Kali VM file on your chosen virtualization software, like VirtualBox or VMware.
+ </br>
+ </br>
+ <img src="https://imgur.com/8JTfmyQ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
  </br>
  </br>
  3. Start the VM and follow the on-screen prompts to install Kali.
  </br>
  </br>
- 4. Once the installation is complete, log in to the Kali VM using the credentials “kali” for both the username and password.
+ 4. After the installation finishes, access the Kali VM by entering “kali” for both the username and password..
  </br>
  </br>
 
@@ -69,7 +72,7 @@ Task 2: Setting up the Linux VM
 Task 3: Setting up the Agent to Collect Logs
 </br>
 </br>
-1. Log in to your Elastic SIEM instance and navigate to the Integrations page by: clicking on the Kibana main menu bar at the top left, then selecting “Integrations” at the bottom.
+1. Sign in to your Elastic SIEM instance and go to the Integrations page by clicking on the main menu bar in Kibana at the top left and choosing “Integrations” from the list at the bottom.
 <br/>
 </br>
 <img src="https://imgur.com/5VorLIh.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
@@ -81,7 +84,7 @@ Task 3: Setting up the Agent to Collect Logs
 <img src="https://imgur.com/UGAmjKe.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </br>
 </br>
-3. Click on “Install Elastic Defend” and follow the instructions provided on the integration page to install the agent on your Kali VM.
+3. Select “Install Elastic Defend” and follow the guidance provided on the integration page to set up the agent on your Kali VM.
 </br>
 </br>
 <img src="https://imgur.com/FjP4QAa.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
@@ -91,7 +94,7 @@ Task 3: Setting up the Agent to Collect Logs
 <img src="https://imgur.com/nXOx0qW.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </br>
 </br>
-5. Once the agent is installed, which can take a few minutes, you’ll see a message that says “Elastic Agent has been successfully installed.” It will automatically start collecting and forwarding logs to your Elastic SIEM instance, although it might take a few minutes for the logs to appear in the SIEM.
+5. After the agent installation is complete, which may take several minutes, you will receive a notification stating, “Elastic Agent has been successfully installed.” The agent will begin collecting and sending logs to your Elastic SIEM instance, but please allow some time for the logs to show up in the SIEM.
 </br>
 </br>
 <img src="https://imgur.com/F4M3W2p.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
@@ -99,15 +102,14 @@ Task 3: Setting up the Agent to Collect Logs
 Task 4: Generating Security Events on the Kali VM
 </br>
 </br>
-
-1. Install Nmap on the Linux VM if you’re not using Kali, Nmap already comes preinstalled in Kali. Open a new Terminal and run this command to install it: sudo apt-get install nmap.
- <br/>
+If you are not using Kali, install Nmap on your Linux VM. Open a new Terminal and execute the following command to install it: `sudo apt-get install nmap`. If you are using Kali, Nmap is already included by default.
+<br/>
  </br>
- 2. Run a scan on Kali machine by running the command: sudo nmap <vm-ip>. You can also run a scan of your host machine if you place your Kali VM on a “bridged” network.
-<img src="https://imgur.com/G5TBYLL.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+2. Perform a scan on the Kali machine by executing the command: `sudo nmap <vm-ip>`. Additionally, if your Kali VM is configured on a “bridged” network, you can also scan your host machine.
+ <img src="https://imgur.com/G5TBYLL.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
-3. This scan generates several security events, such as the detection of open ports and the identification of services running on those ports. Run a few more Nmap scans (“nmap -sS <ip address>”, “nmap -sT <ip address>”, “nmap -p- <ip address>”etc..”
+3.This scan produces various security events, including the detection of open ports and the identification of services associated with those ports. Execute additional Nmap scans using commands like `nmap -sS <ip address>`, `nmap -sT <ip address>`, and `nmap -p- <ip address>`, among others.
 </br>
 </br>
 <img src="https://imgur.com/oBAyRmQ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
@@ -116,20 +118,19 @@ Task 4: Generating Security Events on the Kali VM
 Task 5: Querying for Security Events in the Elastic SIEM
 </br>
 </br>
-1. Inside your Elastic Deployment, click on the menu icon at the top-left with the three horizontal lines and then click on the “Logs” tab under “Observability” to view the logs from the Kali VM.
+1.Within your Elastic Deployment, click on the menu icon at the top left, which features three horizontal lines, and then select the “Logs” tab found under “Observability” to access the logs from the Kali VM.
 </br>
 </br>
 <img src="https://imgur.com/Y4ZPFqj.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </br>
 </br>
-2. In the search bar, enter a search query to filter the logs. For example, to search for all logs related to Nmap scans, enter the query: event.action:
-“nmap_scan” or process.args: “sudo”.
+2. In the search bar, input a query to filter the logs. For instance, to find all logs associated with Nmap scans, you can use the query: `event.action: "nmap_scan"` or `process.args: "sudo"`.
 </br>
 </br>
 3. Click on the “Search” button to execute the search query.
 </br>
 </br>
-4. The results of the search query will be displayed in the table below. You can click on the three dots next to each event to view more details.
+4. The results of your search query will appear in the table below. You can click on the three dots next to each event to access additional details.
 </br>
 </br>
 <img src="https://imgur.com/G4KDvfN.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
@@ -142,16 +143,16 @@ Task 6: Create a Dashboard to Visualize the Events
 1.Navigate to the Elastic web portal at https://cloud.elastic.co/.
 </br>
 </br>
-2. Click on the menu icon on the top-left, then under “Analytics,” click on “Dashboards.”
+2. Click on the menu icon at the top left, then under “Analytics,” select “Dashboards.”
 </br>
 </br>
 <img src="https://imgur.com/5h4bsZ3.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 </br>
-3. Click on the “Create dashboard” button on the top right to create a new dashboard.
+3. Click the “Create dashboard” button located at the top right to initiate the creation of a new dashboard.
 </br>
 </br>
-4. Click on the “Create Visualization” button to add a new visualization to the dashboard.
+4. Select the “Create Visualization” button to add a new visualization to your dashboard.
 </br>
 </br>
 5. Select “Area” or “Line” as the visualization type, depending on your preference. This will create a chart that shows the count of events over time.
@@ -161,7 +162,7 @@ Task 6: Create a Dashboard to Visualize the Events
 <p align="center"> 
 </br>
 </br>
-6. In the “Metrics” section of the visualization editor on the right, select “Count” as the vertical field type and “Timestamp” for the horizontal field. This will show the count of events over time.
+6. In the “Metrics” section of the visualization editor on the right, choose “Count” as the vertical field type and select “Timestamp” for the horizontal field. This setup will display the number of events over time.
 </br>
 </br>
 <img src="https://imgur.com/jJkQESe.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
@@ -192,7 +193,7 @@ Task 7: Create an Alert
 4. Under the “Define rule” section, select the “Custom query” option from the dropdown menu.
 </br>
 </br>
-5. Under “Custom query,” set the conditions for the rule. You can use the following query to detect Nmap scan events.
+5. In the “Custom query” section, specify the conditions for the rule. You can utilize the following query to identify Nmap scan events.
 </br>
 </br>
 <img src="https://imgur.com/6OFw2yM.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
@@ -204,13 +205,13 @@ This query will match all events with the action “nmap_scan.” Then click “
 6. Under the “About rule” section, give your rule a name and a description (Nmap Scan Detection).
 </br>
 </br>
-7. Set the severity level for the alert, which can help you prioritize alerts based on their importance. Keep all the other default settings under “Schedule rule” and click “Continue.”
+7. Assign a severity level to the alert to help prioritize alerts according to their significance. Leave all other default settings under “Schedule rule” unchanged and click “Continue.”
 </br>
 </br>
 <img src="https://imgur.com/XV4Vgkz.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </br>
 </br>
-8. In the “Actions” section, select the action you want to take when the rule is triggered. You can choose to send an email notification, create a Slack message, or trigger a custom webhook.
+8. In the “Actions” section, choose the action you wish to execute when the rule is triggered. Options include sending an email notification, creating a Slack message, or initiating a custom webhook.
 </br>
 </br>
 9. Finally, click the “Create and enable rule” button to create the alert.
